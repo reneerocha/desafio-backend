@@ -1,6 +1,14 @@
 class DeputiesController < ApplicationController
   before_action :set_deputy, only: %i[ show edit update destroy ]
 
+  def import
+    if DeputyCreator.call(params[:file])
+        redirect_to deputies_path, alert: 'Importação realizada com sucesso'
+        else
+            redirect_to deputies_path, alert: 'Importação falhou'
+        end
+  end
+
   # GET /deputies or /deputies.json
   def index
     @deputies = Deputy.all
@@ -65,6 +73,6 @@ class DeputiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deputy_params
-      params.require(:deputy).permit(:name, :deputy_id, :identity_number, :state, :party, :legislature_id)
+      params.require(:deputy).permit(:name, :deputy_id, :identity_number, :state, :party, :legislature_id,:file)
     end
 end
