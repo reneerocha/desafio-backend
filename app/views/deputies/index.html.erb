@@ -1,4 +1,14 @@
-  <%= form_tag import_deputies_path, multipart: true do %>
-  <%= file_field_tag :file%>
-  <%= submit_tag "Import CSV"%>
+<h1>Deputados</h1>
+
+<%= render 'upload', deputy: @deputy %>
+
+<section>
+  <% @deputies.each do |deputy| %>
+    <a href=<%= deputy_path(deputy.id) %>>
+      <div>
+        <%= image_tag "http://www.camara.leg.br/internet/deputado/bandep/#{deputy.deputy_id}.jpg", width: '150px' %>
+        <p><%= deputy.name %></p>
+      </div>
+    </a>
   <% end %>
+</section>

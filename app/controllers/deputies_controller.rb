@@ -16,6 +16,7 @@ class DeputiesController < ApplicationController
 
   # GET /deputies/1 or /deputies/1.json
   def show
+
   end
 
   # GET /deputies/new

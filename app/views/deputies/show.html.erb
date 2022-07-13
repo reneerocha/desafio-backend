@@ -1,0 +1,44 @@
+  <div>
+    <div>
+      <div>
+        <%= link_to 'Deputados', deputies_path %>
+        <p></p>
+        <p><%= @deputy.name %></p>
+      </div>
+      <%= image_tag "http://www.camara.leg.br/internet/deputado/bandep/#{@deputy.deputy_id}.jpg", width: '100px' %>
+    </div>
+    <div>
+      <h2><%= @deputy.name %></h2>
+      <p><strong>Identificador: </strong> <%= @deputy.deputy_id %></p>
+      <p><strong>CPF: </strong> <%= @deputy.identity_number %></p>
+      <p><strong>UF: </strong> <%= @deputy.state %></p>
+      <p><strong>Partido: </strong> <%= @deputy.party %></p>
+      <p><strong>Legislatura: </strong> <%= @deputy.legislature.year %></p>
+    </div>
+  </div>
+  <div>
+    <hr>
+    <h2>Despesas</h2>
+    <p>A maior despesa foi realizada no dia <%= @deputy.expenses.order('net_value DESC').pluck(:issue_date).first %>
+    com o valor de <%= number_to_currency(@deputy.expenses.maximum(:net_value)) %> com o fornecedor(a) <%= @deputy.expenses.order('net_value DESC').pluck(:provider).first%>
+    e com <a href="<%= @deputy.expenses.order('net_value DESC').pluck(:document_url).first  %>" , target: "_blank"> Nota Fiscal</a>.
+    </p>
+    <table>
+      <tr>
+        <th>Data de emissão</th>
+        <th>Valor</th>
+        <th>Fornecedor</th>
+        <th>Nota</th>
+      </tr>
+      <% @deputy.expenses.each do |expense| %>
+      
+        <tr>
+          <td><%= expense.issue_date %></td>
+          <td>  <%= number_to_currency(expense.net_value) %> </td>
+          <td><%= expense.provider %></td>
+          <td><a href="<%=expense.document_url %>">Nota Fiscal</a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
