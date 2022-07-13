@@ -49,6 +49,7 @@ class DeputyCreator
         document_number: row['txtNumero'],
         identity_number: row['txtCNPJCPF'],
         document_type: row['indTipoDocumento'],
+        provider: row['txtFornecedor'],
         issue_date: row['datEmissao'],
         document_value: row['vlrDocumento'],
         gloss_value: row['vlrGlosa'],
