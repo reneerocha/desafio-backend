@@ -1,4 +1,4 @@
-FROM ruby:2.6.6
+FROM ruby:2.7.0
 
 # Install node & yarn
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -26,7 +26,8 @@ WORKDIR /app
 COPY Gemfile* /app/
 ARG BUNDLE_INSTALL_ARGS
 RUN gem install bundler:2.1.4
-RUN bundle config set without 'development test'
+#RUN bundle config set without 'development test'
+RUN bundle update --bundler
 RUN bundle install ${BUNDLE_INSTALL_ARGS} \
   && rm -rf /usr/local/bundle/cache/* \
   && find /usr/local/bundle/gems/ -name "*.c" -delete \
