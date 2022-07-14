@@ -5,6 +5,6 @@ FactoryBot.define do
     identity_number { 1 }
     state { "MyString" }
     party { "MyString" }
-    legislature { nil }
+    legislature { build(:legislature) }
   end
 end

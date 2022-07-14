@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :legislature do
-    year { 2021 }
+    year { nil }
   end
 end

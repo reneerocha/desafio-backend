@@ -15,6 +15,6 @@ FactoryBot.define do
     refund { "MyString" }
     restitution { "MyString" }
     document_url { "MyString" }
-    deputy { nil }
+    deputy { build(:deputy)  }
   end
 end

@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Expense, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'valid' do
+    let(:expense) { create :expense }
+  
+    it { expect(expense).to be_valid }
+  end
 end
