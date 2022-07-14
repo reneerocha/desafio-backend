@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2022_07_12_231848) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "deputies", force: :cascade do |t|
     t.string "name"
     t.integer "deputy_id"
     t.string "identity_number"
     t.string "state"
     t.string "party"
-    t.integer "legislature_id", null: false
+    t.bigint "legislature_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["legislature_id"], name: "index_deputies_on_legislature_id"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_07_12_231848) do
     t.string "refund"
     t.string "restitution"
     t.string "document_url"
-    t.integer "deputy_id", null: false
+    t.bigint "deputy_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "document_value"
