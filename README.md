@@ -1,3 +1,59 @@
+# Link Projeto Heroku
+
+- https://rankingdeputado.herokuapp.com/
+
+# Instruções para Execução
+
+## Pré-requisitos
+
+Instação docker windows
+- https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+
+Instação docker Ubuntu
+
+Primeiro, atualize sua lista existente de pacotes:
+
+- sudo apt update
+
+Em seguida, instale alguns pacotes pré-requisito que deixam o apt usar pacotes pelo HTTPS:
+
+- sudo apt install apt-transport-https ca-certificates curl software-properties-common
+Então, adicione a chave GPG para o repositório oficial do Docker no seu sistema:
+- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+Adicione o repositório do Docker às fontes do APT:
+- sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+Em seguida, atualize o banco de dados do pacote com os pacotes do Docker do recém adicionado repositório:
+- sudo apt update
+
+Certifique-se de que você está prestes a instalar do repositório do Docker ao invés do repositório padrão do Ubuntu:
+
+- apt-cache policy docker-ce
+
+Instalação 
+- sudo apt install docker-ce
+
+### Passo execução
+
+- git clone git@github.com:reneerocha/desafio-backend.git
+
+Criação da imagem
+- docker-compose build --force-rm
+
+Criação Banco de Dados
+- docker-compose run web rake db:create
+
+Criação da Tabelas
+- docker-compose run web rake db:migrate
+
+Executar suítes de teste
+- docker-compose run web rspec .
+
+Inicializar a aplicação
+- docker-compose up
+
+Acesso navegador
+- localhost:3000
+
 # Ranking dos gastos dos Deputados
 
 Estamos muito felizes que você tenha chegado nessa etapa do nosso processo seletivo, para essa fase, desejamos que você resolva um desafio. Nosso desafio consiste em analisar alguns dados disponibilizados pelo Câmara dos Deputados relativos aos gastos dos parlamentares. A ideia é descobrir quem, do seu estado, está gastando mais e exibir de forma resumida esses principais gastos.
