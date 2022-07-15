@@ -1,4 +1,4 @@
-FROM ruby:2.7.1
+FROM ruby:2.7.2
 
 # Install node & yarn
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
